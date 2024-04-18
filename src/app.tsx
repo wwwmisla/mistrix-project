@@ -1,5 +1,15 @@
+import { MatrixMusic } from './components/matrix-music'
+import { Canvas } from './components/canvas'
+import { FormLogin } from './components/form-login'
+
 export function App() {
   return (
-    <h1 className="text-3xl font-bold underline">Hello World!</h1>
+    <div id='fade-in-image'>
+      <MatrixMusic />
+      <Canvas />
+      <div id='tabela'>
+        <FormLogin />
+      </div>
+    </div>
   )
 }

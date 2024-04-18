@@ -1,3 +1,115 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+#fade-in-image { animation: fadeIn 3s; }
+
+@keyframes fadeIn {
+        0% { opacity: 0; }
+        100% { opacity: 1; }
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: black;
+}
+
+#tabela {
+    color: green;
+    width:400px;
+    height: 300px;
+    background-color: rgba(5, 5, 5, 0.8);
+    border: 3px groove green;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+}
+
+#l-card {
+    color: green;
+    width: 940px;
+    height: 340px;
+    background-color: rgba(5, 5, 5, 0.8);
+    border: 3px groove green;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+}
+
+.titulo {
+    font-size: 30px;
+}
+
+.username {
+    font-size: 15px;
+    margin-left: 10px;
+}
+
+.password {
+    font-size: 15px;
+}
+
+.username-text, .password-text {
+    width: 200px;
+    height: 30px;
+    color: green;
+    border: 3px groove green;
+    background-color: black;
+    font-size: 15px;
+    padding: 4px;
+}
+
+.botao, a .botao {
+    cursor: pointer;
+    width: 150px;
+    height: 40px;
+    color: green;
+    border: 3px groove green;
+    background-color: black;
+    font-size: 15px;
+    margin: 10px;
+
+    transition: all ease-in-out 4ms;
+    -webkit-transition: all ease-in-out 4ms;
+    -moz-transition: all ease-in-out 4ms;
+    -ms-transition: all ease-in-out 4ms;
+    -o-transition: all ease-in-out 4ms;
+}
+
+.botao:hover {
+    transform: scale(1.02);
+    -webkit-transform: scale(1.02);
+    -moz-transform: scale(1.02);
+    -ms-transform: scale(1.02);
+    -o-transform: scale(1.02);
+}
+
+.check {
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.check2 {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: 2px groove green;
+    background: black;
+    cursor: pointer;
+}
+
+.checkpass {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: 2px groove green;
+    background: black;
+    cursor: pointer;
+    margin-left: -35px;   
+}
