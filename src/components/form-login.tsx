@@ -7,33 +7,43 @@ export function FormLogin() {
         } else {
             x.type = "password";
         }
-    };    
+    };
 
     return (
         // Formulário de login
         <form id="loginForm">
-            <div className="text-center">
+            <div className="flex flex-col text-center gap-6">
                 {/* Titulo */}
-                <p className="titulo">[Mistrix]</p><br />
+                <p id="titulo" className="text-3xl">[Mistrix]</p>
 
-                {/* Campo do username */}
-                <label className="username">Username:</label>
-                <input type="text" placeholder="neo@mistrix.com" className="username-text" id="username" required/><br /><br />
+                {/* Campos */}
+                <div className="flex flex-wrap gap-2">
+                    {/* Campo do username */}
+                    <label className="username text-lg">Username:</label>
+                    <input id="username" type="passwpord" placeholder="neo@mistrix.com" className="username-text w-52 h-8 p-1 bg-black" required />
 
-                {/* Campo da senha */}
-                <label className="password">Password:</label>
-                <input type="password" id="password" placeholder="*******" className="password-text" required />
-                <button className="checkpass" onClick={pass}></button><br /><br />
+                    {/* Campo da senha */}
+                    <label className="password text-lg">Password:</label>
+                    <input id="password" type="password" placeholder="*******" className="password-text w-52 h-8 p-1 bg-black" required />
+                    <button className="checkpass w-[15px] h-[15px] rounded-3xl bg-black cursor-pointer mt-2 -ml-[35px] hover:bg-greenOne" onClick={pass}></button>
+                </div>
 
-                {/* Botão logar */}
-                <a href="#"><button type="submit" value="submit" className="botao">Login</button></a>
+                {/* Botões */}
+                <div className="flex justify-center gap-3">
+                    {/* Botão logar */}
+                    <a href="#"><button id="btn-login" type="button" className="botao text-lg cursor-pointer w-[150px] h-[40px] bg-bgOne">Login</button></a>
 
-                {/* Botão para cadastrar-se */}
-                <a href="#"><button type="submit" value="submit" className="botao">Cadastrar-se</button></a>
+                    {/* Botão para cadastrar-se */}
+                    <a href="#"><button id="btn-cadastrar" type="button" className="botao text-lg cursor-pointer w-[150px] h-[40px] bg-black">Cadastrar-se</button></a>
+                </div>
 
                 {/* Opções Lembrar-se de mim e Esqueci a senha */}
-                {/* <label className="check"><button className="check2" id="rememberMe"></button> Lembrar-se de mim</label>
-                <a className="check"><button className="check2" id="forgotPassword"></button> Esqueci a senha</a> */}
+                <div className="flex flex-col">
+                    <label className="check cursor-pointer text-base hover:underline">
+                        <button className="check2 w-[15px] h-[15px] rounded-3xl cursor-pointer bg-black mr-1 hover:bg-greenOne" id="rememberMe"></button>Lembrar-se de mim
+                    </label>
+                    <a id="forgotPassword" className="cursor-pointer text-base hover:underline">Esqueci a senha</a>
+                </div>
             </div>
         </form>
     )
