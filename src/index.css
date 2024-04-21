@@ -9,7 +9,7 @@
         100% { opacity: 1; }
 }
 
-#tabela, .username-text, .password-text, .botao, a .botao {
+.tabela, .username-text, .password-text, .email-text, .botao, a .botao {
     border: 3px groove green;
 }
 
