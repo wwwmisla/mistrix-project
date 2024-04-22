@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../services/firebaseConfig";
+import { toast } from "sonner";
 
 export function FormLogin(): JSX.Element {
     const [email, setEmail] = useState<string>("");
@@ -9,6 +10,7 @@ export function FormLogin(): JSX.Element {
     const [showPassword, setShowPassword] = useState<boolean>(false);
     const [error, setError] = useState<string>("");
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+    const navigate = useNavigate();
 
     const [
         signInWithEmailAndPassword,
@@ -18,6 +20,8 @@ export function FormLogin(): JSX.Element {
         useSignInWithEmailAndPassword(auth);
 
     useEffect(() => {
+        console.log("Usuário atual:", user);
+
         // Verifica se o usuário já está autenticado
         if (user) {
             setIsAuthenticated(true);
@@ -31,8 +35,10 @@ export function FormLogin(): JSX.Element {
         setError(""); // Limpa o erro antes de tentar fazer login
 
         try {
+            console.log("Tentando fazer login com:", email);
             await signInWithEmailAndPassword(email, password);
         } catch (error) {
+            console.error("Erro ao fazer login:", error);
             setError("Erro ao fazer login. Verifique suas credenciais e tente novamente.");
         }
     }
@@ -40,22 +46,29 @@ export function FormLogin(): JSX.Element {
     useEffect(() => {
         // Se o usuário estiver autenticado, redirecione para a rota privada
         if (isAuthenticated) {
-            window.location.href = "/home";
+            console.log("Usuário autenticado. Redirecionando para a página de home...");
+            // toast.error('Login realizado com sucesso!', {
+            //     position: 'top-right', 
+            // });
+            navigate('/home');
+            // window.location.href = "/home";
+
         }
-    }, [isAuthenticated]);
+    }, [isAuthenticated, navigate]);
 
-    // if (loading) {
-    //     return <p>Carregando...</p>;
-    // }
+    if (loading) {
+        return <p>Carregando...</p>;
+    }
 
-    // if (user) {
-    //     console.log(user);
-    // }
+    if (user) {
+        console.log(user);
+    }
 
-    // if (error) {
-    //     console.log(error);
-    // }
+    if (error) {
+        console.log(error);
+    }
 
+    // Fazer testes para verificar se o usuário existe, se a senha está errada...
     return (
         <div className='tabela absolute top-1/2 left-1/2 bg-bgOne text-greenOne w-[400px] h-[300px] transform -translate-x-1/2 -translate-y-1/2 p-4'>
             <form id="loginForm" onSubmit={handleSignIn}>
