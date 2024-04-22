@@ -2,22 +2,80 @@
 @tailwind components;
 @tailwind utilities;
 
-#fade-in-image { animation: fadeIn 3s; }
-
-@keyframes fadeIn {
-        0% { opacity: 0; }
-        100% { opacity: 1; }
+* {
+    cursor: url(https://cur.cursors-4u.net/cursors/cur-1/cur21.ani), url(https://cur.cursors-4u.net/cursors/cur-1/cur21.png), auto !important;
+    scrollbar-width: thin;
+    scrollbar-color: green rgba(0, 0, 0, 0.562);
 }
 
-.tabela, .username-text, .password-text, .email-text, .botao, a .botao {
+/* ::-webkit-scrollbar-button:start:decrement,
+::-webkit-scrollbar-button:end:increment {
+    background-color: rgb(255, 0, 0); 
+}
+
+::-moz-scrollbar-button {
+    background-color: red; 
+} */
+
+::-webkit-scrollbar,
+::-webkit-scrollbar-track {
+    width: 12px;
+    background-color: green;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: green;
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+    height: 12px;
+}
+
+::-webkit-scrollbar-button {
+    background-color: green;
+}
+
+#fade-in-image {
+    animation: fadeIn 3s;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.tabela,
+.username-text,
+.email-text,
+.password-text,
+.botao,
+a .botao {
     border: 3px groove green;
 }
 
-.checkpass, .check2 {
+#card-logado {
+    border: 1px groove green;
+    overflow: scroll;
+}
+
+.header-card {
+    border: 1px groove rgba(0, 255, 0, 0.76);
+}
+
+.checkpass,
+.check2 {
     border: 2px groove green;
 }
 
-.botao, a .botao, .checkpass {
+.botao,
+a .botao,
+.checkpass {
     transition: all ease-in-out 4ms;
     -webkit-transition: all ease-in-out 4ms;
     -moz-transition: all ease-in-out 4ms;
