@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useSignInWithEmailAndPassword, useSendPasswordResetEmail } from 'react-firebase-hooks/auth';
 import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../services/firebaseConfig";
 import { toast } from "sonner";
@@ -10,6 +10,7 @@ export function FormLogin(): JSX.Element {
     const [showPassword, setShowPassword] = useState<boolean>(false);
     const [error, setError] = useState<string>("");
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+    const [rememberMe, setRememberMe] = useState<boolean>(false);
     const navigate = useNavigate();
 
     const [
@@ -19,14 +20,37 @@ export function FormLogin(): JSX.Element {
         signInError] =
         useSignInWithEmailAndPassword(auth);
 
+    const [
+        sendPasswordResetEmail,
+        resetPasswordLoading,
+        resetPasswordError
+    ] = useSendPasswordResetEmail(auth);
+
     useEffect(() => {
         console.log("Usuário atual:", user);
 
         // Verifica se o usuário já está autenticado
         if (user) {
             setIsAuthenticated(true);
+            if (rememberMe) {
+                localStorage.setItem("rememberedEmail", email);
+                localStorage.setItem("rememberedPassword", password); // Não é recomendado em um aplicativo real!
+            } else {
+                localStorage.removeItem("rememberedEmail");
+                localStorage.removeItem("rememberedPassword");
+            }
         }
-    }, [user]);
+    }, [user, rememberMe, email, password]);
+
+    useEffect(() => {
+        const rememberedEmail = localStorage.getItem("rememberedEmail");
+        const rememberedPassword = localStorage.getItem("rememberedPassword");
+        if (rememberedEmail) {
+            setEmail(rememberedEmail);
+            setPassword(rememberedPassword ?? "");
+            setRememberMe(true);
+        }
+    }, []);
 
     async function handleSignIn(event: React.FormEvent<HTMLFormElement>): Promise<void> {
         event.preventDefault();
@@ -43,6 +67,20 @@ export function FormLogin(): JSX.Element {
         }
     }
 
+    async function handleForgotPassword(): Promise<void> {
+        try {
+            await sendPasswordResetEmail(email);
+            toast.success('E-mail de redefinição de senha enviado com sucesso!', {
+                position: 'top-right',
+            });
+        } catch (error) {
+            console.error("Erro ao enviar e-mail de redefinição de senha:", error);
+            toast.error('Erro ao enviar e-mail de redefinição de senha. Verifique o e-mail e tente novamente.', {
+                position: 'top-right',
+            });
+        }
+    }
+
     useEffect(() => {
         // Se o usuário estiver autenticado, redirecione para a rota privada
         if (isAuthenticated) {
@@ -56,15 +94,15 @@ export function FormLogin(): JSX.Element {
         }
     }, [isAuthenticated, navigate]);
 
-    if (loading) {
-        return <p>Carregando...</p>;
+    if (loading || resetPasswordLoading) {
+        return <p className=" text-lg text-greenOne">Carregando...</p>;
     }
 
     if (user) {
         console.log(user);
     }
 
-    if (error) {
+    if (error || resetPasswordError) {
         console.log(error);
     }
 
@@ -94,10 +132,19 @@ export function FormLogin(): JSX.Element {
                         </Link>
                     </div>
                     <div className="flex flex-col">
-                        <label className="check cursor-pointer text-base hover:underline hover:cursor-not-allowed">
-                            <button className="check2 w-[15px] h-[15px] rounded-3xl cursor-pointer bg-black mr-1 hover:bg-greenOne" id="rememberMe"></button>Lembrar-se de mim
+
+                        <label className="check cursor-pointer text-base hover:underline flex justify-center items-center gap-1">
+                            <input
+                                type="checkbox"
+                                checked={rememberMe}
+                                onChange={(event) => setRememberMe(event.target.checked)}
+                                className="check2 visually-hidden"
+                            />
+                            <span className={`check2-icon ${rememberMe ? 'bg-greenOne' : ''}`}></span>
+                            Lembrar-se de mim
                         </label>
-                        <a id="forgotPassword" className="cursor-pointer text-base hover:underline hover:cursor-not-allowed">Esqueci a senha</a>
+
+                        <a id="forgotPassword" className="cursor-pointer text-base hover:underline" onClick={handleForgotPassword}>Esqueci a senha</a>
                     </div>
                 </div>
             </form>

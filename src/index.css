@@ -92,3 +92,41 @@ a .botao,
     -ms-transform: scale(1.02);
     -o-transform: scale(1.02);
 }
+
+.visually-hidden {
+    position: absolute;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    width: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+}
+
+.check {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.check2-icon {
+    width: 15px;
+    height: 15px;
+    border: 2px groove green;
+    border-radius: 50%;
+    background-color: black;
+    transition: background-color 0.3s ease;
+}
+
+.check2-icon.bg-greenOne {
+    background-color: green;
+}
+
+.check:hover .check2-icon {
+    background-color: green;
+}
+
+.check:hover span {
+    text-decoration: underline;
+}
