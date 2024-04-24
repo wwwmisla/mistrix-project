@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../services/firebaseConfig";
 
 export function FormCadastrar() {
@@ -8,6 +8,7 @@ export function FormCadastrar() {
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const [showPassword, setShowPassword] = useState<boolean>(false);
+    const navigate = useNavigate();
 
     const [
         createUserWithEmailAndPassword,
@@ -19,6 +20,7 @@ export function FormCadastrar() {
     function handleSignOut(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
         createUserWithEmailAndPassword(email, password);
+        navigate('/');
     }
 
     if (loading) {
