@@ -22,7 +22,7 @@
 
 ## Índice
 
-- [Título e Imagem de capa](#mistrix-project)
+- [Título e Imagem de capa](https://github.com/wwwmisla/mistrix-project/)
 - [Descrição do projeto](#-descrição-do-projeto)
 - [Tecnologias Utilizadas](#-tecnologias-utilizadas)
 - [Executando](#-executando)
@@ -36,7 +36,7 @@
 
 O <strong>[Mistrix]</strong> é um pequeno sistema desenvolvido com React, TypeScript, TailwindCSS, Firebase e LocalStorage, o qual foi desenvolvido para a disciplina de LOP ministrada pelo prof. Aquiles Burlamaqui.
 
-- Projeto 01: [Clique Aqui]() para assistir a explicação.
+- Projeto 01: [Clique Aqui](https://youtu.be/63Es5NOnmIg?feature=shared) para assistir a explicação.
 
 ## 🛠 Tecnologias Utilizadas
 
@@ -65,7 +65,7 @@ Acesse http://localhost:5173 para visualizar a aplicação.
 
 ## 🚀 Deploy
 
-Utilizei no deploy a [#](https://#.com/) que é uma plataforma voltada para a hospedagem de aplicações de uma forma bem simples e rápida. <a href= "#" target="_blank"> Clique Aqui </a> para visualizar o projeto.
+Utilizei no deploy a [Vercel](https://vercel.com/) que é uma plataforma voltada para a hospedagem de aplicações de uma forma bem simples e rápida. <a href= "https://mistrix-project.vercel.app" target="_blank"> Clique Aqui </a> para visualizar o projeto.
 
 ## 🚧 Desenvolvido Por 
 `Misla Wislaine` para a disciplina de LOP ministrada pelo prof. [Aquiles Burlamaqui](https://github.com/AquilesBurlamaqui) da ECT - UFRN.
